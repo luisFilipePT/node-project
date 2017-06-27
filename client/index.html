@@ -7,53 +7,108 @@
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- JQuery -->
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 
-
-  <title>Staging Server</title>
+  <title>App</title>
 </head>
 <body class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h1>Hello universe of dom evil mr Zé teste Live SUCESS AGAIN ONCE MORE</h1>
-      <button class="btn" name="save">Save</button>
+    <div class="col-md-12 text-center">
+        <h1>Demo App</h1>
     </div>
   </div>
 
+<section id="sec-list">
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-info" id="new">New User</button>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12" style="display: inline-flex;">
+      <div class="form-group" style="width: 50%;">
+        <label for="search-field"></label>
+        <input type="text" class="form-control" id="search-field" placeholder="Enter nickname to search">
+      </div>
+      <div>
+        <button class="btn btn-info" id="search" style="margin-top: 20px;margin-left: 10px;">Search</button>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="js-table">
         <table class="table">
           <thead>
             <tr>
-              <th>#</th>
+              <th>Nickname</th>
               <th>First Name</th>
               <th>Last Name</th>
-              <th>Username</th>
+              <th>Age</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-             <tr>
-               <th scope="row">3</th>
-               <td>Larry</td>
-               <td>the Bird</td>
-               <td>@twitter</td>
-             </tr>
+
            </tbody>
          </table>
        </div>
     </div>
   </div>
+</section>
+
+<section id="sec-detail" style="display:none">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 id="detail-title"></h1>
+        </div>
+      </div>
+      <div class="row">
+        <form>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="nickname">Nickname</label>
+              <input type="text" class="form-control" id="nickname" placeholder="Nickname">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="first-name">First Name</label>
+              <input type="text" class="form-control" id="first-name" placeholder="First Name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="last-name">Last Name</label>
+              <input type="text" class="form-control" id="last-name" placeholder="Last Name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="text" class="form-control" id="age" placeholder="Age">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <button class="btn" id="cancel">Cancel</button>
+          <button class="btn btn-success" id="save">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </body>
 </html>
