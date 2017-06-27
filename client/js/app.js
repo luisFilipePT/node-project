@@ -12,7 +12,6 @@ var updateList = function(usersList) {
     tableBodyHtml.append('<td colspan="4">No users</td>');
 
   } else {
-    console.log(usersList);
     for (var i = 0; i < Object.keys(usersList).length; i++) {
       var user = users[Object.keys(usersList)[i]];
 
@@ -47,7 +46,7 @@ var createUser = function() {
     var user = users[Object.keys(users)[i]];
 
 
-    if (user.nickname === newUser.nickname) {
+    if ($('#detail-title').text() === 'Create' && user.nickname === newUser.nickname) {
       alert('Nickname already exists');
       return;
     }
