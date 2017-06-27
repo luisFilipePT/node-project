@@ -1,29 +1,31 @@
-var users = {
-  'luis': {nickname: "luis", name: "Luis", lastName: "Oliveira", age: 35},
-  'nunes': {nickname: "nunes", name: "Nuno", lastName: "Santos", age: 22},
+var movies = {
+  'Transformers:-The-Last-Knight': {id:"Transformers:-The-Last-Knight", title: "Transformers: The Last Knight", year: "2017", director: "Michael Bay", cast: "Mark Wahlberg, Anthony Hopkins, Josh Duhamel", imdb: "http://www.imdb.com/title/tt3371366/?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=2773216402&pf_rd_r=08N3BAV4T28T5TB844WV&pf_rd_s=right-7&pf_rd_t=15061&pf_rd_i=homepage&ref_=hm_cht_t0"},
+  'The-House': {id:"The-House" , title: "The House", year: "2017", director: " Andrew Jay Cohen", cast: "Will Ferrell, Amy Poehler, Ryan Simpkins", imdb: "http://www.imdb.com/title/tt4481514/?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=2750721702&pf_rd_r=08N3BAV4T28T5TB844WV&pf_rd_s=right-2&pf_rd_t=15061&pf_rd_i=homepage&ref_=hm_otw_t1"},
 }
 
 // UPDATE LIST
-var updateList = function(usersList) {
+var updateList = function(moviesList) {
   var tableBodyHtml = $('tbody');
   tableBodyHtml.empty();
 
-  if(Object.keys(usersList).length === 0) {
-    tableBodyHtml.append('<td colspan="4">No users</td>');
+  if(Object.keys(moviesList).length === 0) {
+    tableBodyHtml.append('<td colspan="4">No movies</td>');
 
   } else {
-    for (var i = 0; i < Object.keys(usersList).length; i++) {
-      var user = users[Object.keys(usersList)[i]];
+    console.log(moviesList);
+    for (var i = 0; i < Object.keys(moviesList).length; i++) {
+      var movie = movies[Object.keys(moviesList)[i]];
 
       var row = '<tr>'+
-      '<th class="js-user-id">' + user.nickname + '</th>'+
-      '<td>' + user.name + '</td>'+
-      '<td>' + user.lastName + '</td>'+
-      '<td>' + user.age + '</td>'+
+      '<th id="'+ movie.id +'" class="js-movie-id">' + movie.title + '</th>'+
+      '<td>' + movie.year + '</td>'+
+      '<td>' + movie.director + '</td>'+
+      '<td>' + movie.cast + '</td>'+
       '<td>'+
-        '<a href="#" class="js-show-user js-'+ user.nickname +'"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" style="color:blue; margin-right:10px"></span></a>'+
-        '<a href="#" class="js-edit-user js-'+ user.nickname +'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"  style="color:blue; margin-right:10px"></span></a>'+
-        '<a href="#" id="js-delete-user-'+ user.nickname +'" class="js-delete-user js-'+ user.nickname +'"><span class="glyphicon glyphicon-trash" aria-hidden="true"  style="color:blue"></span></a>'+
+        '<a href="'+ movie.imdb +'"><span class="glyphicon glyphicon-play-circle" aria-hidden="true" style="color:blue; margin-right:10px"></span></a>'+
+      '</td>'+
+      '<td>'+
+        '<a href="#" class="js-show-movie js-'+ movie.id +'"><span class="glyphicon glyphicon-eye-open" aria-hidden="true" style="color:blue; margin-right:10px"></span></a>'+
       '</td>'+
       '</tr>';
 
@@ -33,87 +35,21 @@ var updateList = function(usersList) {
   attachListeners();
 };
 
-// CREATE
-var createUser = function() {
-  var newUser = {
-    nickname: $('#nickname').val(),
-    name: $('#first-name').val(),
-    lastName: $('#last-name').val(),
-    age: $('#age').val(),
-  }
-
-  for (var i = 0; i < Object.keys(users).length; i++) {
-    var user = users[Object.keys(users)[i]];
-
-
-    if ($('#detail-title').text() === 'Create' && user.nickname === newUser.nickname) {
-      alert('Nickname already exists');
-      return;
-    }
-
-  }
-
-  users[newUser.nickname] = newUser;
-
-  updateList(users);
-  showListView();
-};
-
-// SEARCH
-var searchUser = function(searchTerm) {
-  var filteredUsers = {};
-
-  for (var i = 0; i < Object.keys(users).length; i++) {
-    var user = users[Object.keys(users)[i]];
-
-    if (user.nickname.indexOf(searchTerm) !== -1) {
-      filteredUsers[user.nickname] = user;
-    }
-  };
-
-  updateList(filteredUsers);
-};
-
 // SHOW
-var showUser = function(userId) {
-  var user = users[userId]
-  $('#nickname').val(user.nickname).attr('disabled', true);
-  $('#first-name').val(user.name).attr('disabled', true);
-  $('#last-name').val(user.lastName).attr('disabled', true);
-  $('#age').val(user.age).attr('disabled', true);
-  showDetailView('#show/' + user.nickname, 'Show');
-  $('#save').hide();
-}
-
-// SHOW
-var editUser = function(userId) {
-  var user = users[userId]
-  $('#nickname').val(user.nickname).attr('disabled', true);
-  $('#first-name').val(user.name);
-  $('#last-name').val(user.lastName);
-  $('#age').val(user.age);
-  showDetailView('#edit/' + user.nickname, 'Edit');
-}
-
-// DELETE
-var deleteUser = function(userId) {
-  delete users[userId];
-  updateList(users);
-}
-
-// RESET FORM
-var resetForm = function() {
-  $('#nickname').val('').attr('disabled', false);
-  $('#first-name').val('').attr('disabled', false);
-  $('#last-name').val('').attr('disabled', false);
-  $('#age').val('').attr('disabled', false);
+var showmovie = function(movieId) {
+  var movie = movies[movieId]
+  console.log(movie);
+  $('#year').text(movie.year);
+  $('#director').text(movie.director);
+  $('#cast').text(movie.cast);
+  $('#imdb').attr('href', movie.imdb);
+  showDetailView('#show/' + movie.title, movie.title);
 }
 
 var showListView = function() {
   window.location = "#";
   $('#sec-detail').hide();
   $('#sec-list').show();
-  resetForm();
 }
 
 var showDetailView = function(location, title) {
@@ -126,40 +62,22 @@ var showDetailView = function(location, title) {
 
 var attachListeners = function() {
   // SHOW CLICKED
-  $('.js-show-user').click(function(e) {
+  $('.js-show-movie').click(function(e) {
     e.preventDefault();
-    var selectedUserId = $(e.currentTarget).closest('tr').find('.js-user-id').text();
-    showUser(selectedUserId);
+    var selectedmovieId = $(e.currentTarget).closest('tr').find('.js-movie-id').attr('id');
+    showmovie(selectedmovieId);
   });
 
-  // DELETE CLICKED
-  $('.js-delete-user').click(function(e) {
-    e.preventDefault();
-    var selectedUserId = $(e.currentTarget).closest('tr').find('.js-user-id').text();
-    deleteUser(selectedUserId);
-  });
-
-  // DELETE CLICKED
-  $('.js-edit-user').click(function(e) {
-    e.preventDefault();
-    var selectedUserId = $(e.currentTarget).closest('tr').find('.js-user-id').text();
-    editUser(selectedUserId);
-  });
 }
 
 $(function() {
   window.location = '#';
-  updateList(users);
+  updateList(movies);
 
   // EVENTS -----------
   // SHOW CREATE
   $('#new').click(function() {
     showDetailView('#create', 'Create');
-  });
-
-  // CREATE SAVE
-  $('#save').click(function() {
-    createUser();
   });
 
   // CANCEL ACTION
@@ -169,7 +87,7 @@ $(function() {
 
   // CANCEL ACTION
   $('#search').click(function() {
-    searchUser($('#search-field').val());
+    searchmovie($('#search-field').val());
   });
 
   $(window).bind('hashchange', function(e) {
@@ -179,14 +97,8 @@ $(function() {
       case '':
         showListView();
       break;
-      case '#create':
-        showDetailView('#create', 'Create');
-      break;
-      case '#edit':
-        editUser(routeInfo[1]);
-      break;
       case '#show':
-        showUser(routeInfo[1]);
+        showmovie(routeInfo[1]);
       break;
     }
   });

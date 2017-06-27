@@ -19,38 +19,41 @@
 <body class="container">
   <div class="row">
     <div class="col-md-12 text-center">
-        <h1>Demo App</h1>
+        <h1>My Movies App</h1>
     </div>
   </div>
 
+<section>
+  <div class="row">
+    <div class="col-md-2">
+      <img src="https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAJUAAAAJDQxMzJhMmNjLTY3MGEtNGE5MS04YTQ4LTFjYWQ5MWU2OGM4MQ.jpg" alt="profile pic">
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Name</label>
+        <p>Luis Oliveira</p>
+      </div>
+      <div class="form-group">
+        <label>Social</label>
+        <p><a href="https://www.facebook.com/luisfilipe.oliveira.18">Facebook</a></p>
+        <p><a href="https://www.linkedin.com/in/luis-oliveira-1a21aba1/">LinkedIn</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+<hr>
 <section id="sec-list">
-  <div class="row">
-    <div class="col-md-12">
-      <button class="btn btn-info" id="new">New User</button>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-12" style="display: inline-flex;">
-      <div class="form-group" style="width: 50%;">
-        <label for="search-field"></label>
-        <input type="text" class="form-control" id="search-field" placeholder="Enter nickname to search">
-      </div>
-      <div>
-        <button class="btn btn-info" id="search" style="margin-top: 20px;margin-left: 10px;">Search</button>
-      </div>
-    </div>
-  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="js-table">
         <table class="table">
           <thead>
             <tr>
-              <th>Nickname</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Age</th>
+              <th>Title</th>
+              <th>Release</th>
+              <th>Director</th>
+              <th>Cast</th>
+              <th>IMDB</th>
               <th></th>
             </tr>
           </thead>
@@ -76,26 +79,28 @@
         <form>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="nickname">Nickname</label>
-              <input type="text" class="form-control" id="nickname" placeholder="Nickname">
+              <label for="year">Year</label>
+              <p id="year"></p>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="first-name">First Name</label>
-              <input type="text" class="form-control" id="first-name" placeholder="First Name">
+              <label for="director">Director</label>
+              <p id="director"></p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="cast">Cast</label>
+              <p id="cast"></p>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="last-name">Last Name</label>
-              <input type="text" class="form-control" id="last-name" placeholder="Last Name">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="age">Age</label>
-              <input type="text" class="form-control" id="age" placeholder="Age">
+              <label for="imdb">imdb</label>
+              <p>
+                <a id="#imdb" href="" target="_blank">See on IMDB</a>
+              </p>
             </div>
           </div>
         </form>
@@ -103,7 +108,6 @@
       <div class="row">
         <div class="col-md-12 text-right">
           <button class="btn" id="cancel">Cancel</button>
-          <button class="btn btn-success" id="save">Save</button>
         </div>
       </div>
     </div>
